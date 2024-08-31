@@ -3,20 +3,19 @@ package org.example.myFirstHibernateProject.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "car_body_type")
-public class CarBodyType {
+@Table(name = "car_model")
+public class CarModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "type")
     private String name;
 
-    public CarBodyType() {
+    public CarModel() {
     }
 
-    public CarBodyType(String type) {
-        this.name = type;
+    public CarModel(String name) {
+        this.name = name;
     }
 
     public int getId() {
