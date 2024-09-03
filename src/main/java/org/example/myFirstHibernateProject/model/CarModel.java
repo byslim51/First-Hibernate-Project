@@ -1,6 +1,8 @@
 package org.example.myFirstHibernateProject.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "car_model")
@@ -12,7 +14,7 @@ public class CarModel {
 
     private String name;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "brand_id")
     private CarBrand brand;
 
@@ -23,6 +25,9 @@ public class CarModel {
     @ManyToOne
     @JoinColumn(name = "car_engine_id")
     private MyCarEngine carEngine;
+
+    @OneToMany(mappedBy = "color", orphanRemoval = true)
+    private Set<Car> cars = new HashSet<>();
 
 
 

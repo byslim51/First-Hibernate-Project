@@ -1,6 +1,8 @@
 package org.example.myFirstHibernateProject.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "car_color")
@@ -10,6 +12,8 @@ public class CarColor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+
 
     public CarColor() {
     }
