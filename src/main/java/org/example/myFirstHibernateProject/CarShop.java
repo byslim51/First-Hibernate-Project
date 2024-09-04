@@ -22,23 +22,23 @@ public class CarShop {
             /**
              * CREATE
              */
-//            session.beginTransaction();
-//            Car car = new Car();
-//            CarColor carColor = session.get(CarColor.class, 3);
-//            CarModel carModel = session.get(CarModel.class, 3);
-//            car.setColor(carColor);
-//            car.setModel(carModel);
-//            System.out.println(car.getColor().getName());
-//            session.save(car);
-//            session.getTransaction().commit();
+            session.beginTransaction();
+            Car car = new Car();
+            CarColor carColor = session.get(CarColor.class, 3);
+            CarModel carModel = session.get(CarModel.class, 3);
+            car.setColor(carColor);
+            car.setModel(carModel);
+            System.out.println(car.getColor().getName());
+            session.save(car);
+            session.getTransaction().commit();
 
             /**
              * GET
              */
-            session.beginTransaction();
-            Car entity1 = session.get(Car.class, 1);
-            System.out.println(entity1.getColor().getName());
-            session.getTransaction().commit();
+//            session.beginTransaction();
+//            Car entity1 = session.get(Car.class, 1);
+//            System.out.println(entity1.getColor().getName());
+//            session.getTransaction().commit();
 
             /**
              * GET MULTIPLE (с условием)

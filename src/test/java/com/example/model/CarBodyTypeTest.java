@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -61,5 +62,15 @@ public class CarBodyTypeTest {
         CarBodyType check = session.get(CarBodyType.class, carBodyType.getId());
         session.getTransaction().commit();
         Assert.assertNull(check);
+    }
+
+    @Test
+    public void unCorrectGetCheck() {
+        session.beginTransaction();
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            CarBodyType entity = session.get(CarBodyType.class, 100);
+            entity.getName();
+        });
+        session.getTransaction().commit();
     }
 }
