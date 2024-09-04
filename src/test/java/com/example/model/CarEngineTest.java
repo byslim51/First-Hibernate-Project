@@ -57,7 +57,7 @@ public class CarEngineTest {
         session.save(carEngine);
 
         MyCarEngine entity = session.get(MyCarEngine.class, carEngine.getId());
-        if (entity != null ){
+        if (entity != null) {
             session.delete(entity);
         }
 

@@ -29,7 +29,7 @@ public class CarTest {
     }
 
     @Test
-    public void getCarModelAndColor(){
+    public void getCarModelAndColor() {
         session.beginTransaction();
         Car entity1 = session.get(Car.class, 1);
         session.getTransaction().commit();
@@ -40,12 +40,12 @@ public class CarTest {
     @Test
     public void createCarModelAndColor() {
         session.beginTransaction();
-            Car car = new Car();
-            CarColor carColor = session.get(CarColor.class, 3);
-            CarModel carModel = session.get(CarModel.class, 1);
-            car.setColor(carColor);
-            car.setModel(carModel);
-            session.save(car);
+        Car car = new Car();
+        CarColor carColor = session.get(CarColor.class, 3);
+        CarModel carModel = session.get(CarModel.class, 1);
+        car.setColor(carColor);
+        car.setModel(carModel);
+        session.save(car);
 
         Car entity1 = session.get(Car.class, car.getId());
         Assert.assertEquals(entity1.getColor().getName(), "Red");

@@ -55,7 +55,7 @@ public class CarBodyTypeTest {
         session.save(carBodyType);
 
         CarBodyType entity = session.get(CarBodyType.class, carBodyType.getId());
-        if (entity != null ){
+        if (entity != null) {
             session.delete(entity);
         }
 
@@ -72,5 +72,6 @@ public class CarBodyTypeTest {
             entity.getName();
         });
         session.getTransaction().commit();
+
     }
 }

@@ -41,8 +41,8 @@ public class CarColorTest {
     @Test
     public void createNewColor() {
         session.beginTransaction();
-            CarColor carColor = new CarColor("Purple");
-            session.save(carColor);
+        CarColor carColor = new CarColor("Purple");
+        session.save(carColor);
 
 
         CarColor entity = session.get(CarColor.class, carColor.getId());
@@ -58,9 +58,9 @@ public class CarColorTest {
         session.save(carColor);
 
         CarColor entity = session.get(CarColor.class, carColor.getId());
-           if (entity != null ){
-                session.delete(entity);
-            }
+        if (entity != null) {
+            session.delete(entity);
+        }
 
         CarColor entity1 = session.get(CarColor.class, carColor.getId());
         session.getTransaction().commit();
