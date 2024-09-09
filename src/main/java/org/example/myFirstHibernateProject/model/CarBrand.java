@@ -14,7 +14,7 @@ public class CarBrand {
 //    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval=true)
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL)
     private List<CarModel> carModels = new ArrayList<>();
 
     public CarBrand() {
@@ -40,7 +40,7 @@ public class CarBrand {
         this.name = name;
     }
 
-//    public List<CarModel> getCarModels() {
-//        return carModels;
-//    }
+    public List<CarModel> getCarModels() {
+        return carModels;
+    }
 }

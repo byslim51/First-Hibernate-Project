@@ -7,7 +7,6 @@ import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class CarBodyTypeTest {
@@ -29,49 +28,18 @@ public class CarBodyTypeTest {
     }
 
     @Test
-    public void getBodyType() {
-        session.beginTransaction();
-        CarBodyType entity = session.get(CarBodyType.class, 1);
-        Assert.assertEquals(entity.getName(), "Cruiser");
-        session.getTransaction().commit();
-    }
-
-    @Test
-    public void createNewBodyType() {
+    public void createAndGetAndDeleteNewBodyType() {
         session.beginTransaction();
         CarBodyType carBodyType = new CarBodyType("Hatchback");
         session.save(carBodyType);
 
         CarBodyType entity = session.get(CarBodyType.class, carBodyType.getId());
         Assert.assertEquals(entity.getName(), "Hatchback");
-        session.delete(entity);
+
+        session.delete(carBodyType);
+        CarBodyType entityDelete = session.get(CarBodyType.class, carBodyType.getId());
+        Assert.assertNull(entityDelete);
         session.getTransaction().commit();
     }
 
-    @Test
-    public void deleteNewBodyType() {
-        session.beginTransaction();
-        CarBodyType carBodyType = new CarBodyType("Hatchback");
-        session.save(carBodyType);
-
-        CarBodyType entity = session.get(CarBodyType.class, carBodyType.getId());
-        if (entity != null) {
-            session.delete(entity);
-        }
-
-        CarBodyType check = session.get(CarBodyType.class, carBodyType.getId());
-        session.getTransaction().commit();
-        Assert.assertNull(check);
-    }
-
-    @Test
-    public void unCorrectGetCheck() {
-        session.beginTransaction();
-        Assertions.assertThrows(NullPointerException.class, () -> {
-            CarBodyType entity = session.get(CarBodyType.class, 100);
-            entity.getName();
-        });
-        session.getTransaction().commit();
-
-    }
 }

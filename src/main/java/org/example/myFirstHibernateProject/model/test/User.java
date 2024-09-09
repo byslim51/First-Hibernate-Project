@@ -15,7 +15,7 @@ public class User {
     private String name;
 
 //    Надо было указать не user_id, а именно название поля user
-    @OneToMany(targetEntity=Phones.class, mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Phones> phones = new ArrayList<>();
 
     public User() {

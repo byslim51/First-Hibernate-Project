@@ -12,7 +12,6 @@ public class Phones {
 //    Также надо было добавить ManyToOne и @JoinColumn вот сюда
     @ManyToOne
     @JoinColumn(name = "user_id")
-//    @Column(name = "user_id")
     private User user;
 
     private int number;

@@ -26,7 +26,7 @@ public class CarModel {
     @JoinColumn(name = "car_engine_id")
     private MyCarEngine carEngine;
 
-    @OneToMany(mappedBy = "color", orphanRemoval = true)
+    @OneToMany(mappedBy = "color")
     private Set<Car> cars = new HashSet<>();
 
 
@@ -76,5 +76,13 @@ public class CarModel {
 
     public void setCarEngine(MyCarEngine carEngine) {
         this.carEngine = carEngine;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
     }
 }

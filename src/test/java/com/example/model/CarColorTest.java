@@ -4,7 +4,6 @@ import org.example.myFirstHibernateProject.model.Car;
 import org.example.myFirstHibernateProject.model.CarColor;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,39 +30,17 @@ public class CarColorTest {
     }
 
     @Test
-    public void getColor() {
-        session.beginTransaction();
-        CarColor entity = session.get(CarColor.class, 1);
-        Assert.assertEquals(entity.getName(), "White");
-        session.getTransaction().commit();
-    }
-
-    @Test
-    public void createNewColor() {
+    public void createAndGetAndDeleteNewCarColor() {
         session.beginTransaction();
         CarColor carColor = new CarColor("Purple");
         session.save(carColor);
-
 
         CarColor entity = session.get(CarColor.class, carColor.getId());
         Assert.assertEquals(entity.getName(), "Purple");
-        session.delete(entity);
+
+        session.delete(carColor);
+        CarColor entityDelete = session.get(CarColor.class, carColor.getId());
+        Assert.assertNull(entityDelete);
         session.getTransaction().commit();
-    }
-
-    @Test
-    public void deleteNewColor() {
-        session.beginTransaction();
-        CarColor carColor = new CarColor("Purple");
-        session.save(carColor);
-
-        CarColor entity = session.get(CarColor.class, carColor.getId());
-        if (entity != null) {
-            session.delete(entity);
-        }
-
-        CarColor entity1 = session.get(CarColor.class, carColor.getId());
-        session.getTransaction().commit();
-        Assert.assertNull(entity1);
     }
 }

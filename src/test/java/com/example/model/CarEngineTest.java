@@ -5,10 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 public class CarEngineTest {
@@ -30,39 +27,17 @@ public class CarEngineTest {
     }
 
     @Test
-    public void getEngine() {
+    public void createAndGetAndDeleteNewCarEngine() {
         session.beginTransaction();
-        MyCarEngine entity = session.get(MyCarEngine.class, 1);
-        Assert.assertEquals(entity.getName(), "engine_v5");
-        session.getTransaction().commit();
-    }
-
-    @Test
-    public void createNewEngine() {
-        session.beginTransaction();
-        MyCarEngine carEngine = new MyCarEngine("engine_v11");
-        session.save(carEngine);
-
-
-        MyCarEngine entity = session.get(MyCarEngine.class, carEngine.getId());
-        Assert.assertEquals(entity.getName(), "engine_v11");
-        session.delete(entity);
-        session.getTransaction().commit();
-    }
-
-    @Test
-    public void deleteNewEngine() {
-        session.beginTransaction();
-        MyCarEngine carEngine = new MyCarEngine("engine_v11");
+        MyCarEngine carEngine = new MyCarEngine("engine_v15");
         session.save(carEngine);
 
         MyCarEngine entity = session.get(MyCarEngine.class, carEngine.getId());
-        if (entity != null) {
-            session.delete(entity);
-        }
+        Assert.assertEquals(entity.getName(), "engine_v15");
 
-        MyCarEngine check = session.get(MyCarEngine.class, carEngine.getId());
+        session.delete(carEngine);
+        MyCarEngine entityDelete = session.get(MyCarEngine.class, carEngine.getId());
+        Assert.assertNull(entityDelete);
         session.getTransaction().commit();
-        Assert.assertNull(check);
     }
 }

@@ -32,10 +32,10 @@ public class CarShop {
 //            session.save(car);
 //            session.getTransaction().commit();
 
-            session.beginTransaction();
-            MyCarEngine car = new MyCarEngine("engine");
-            session.save(car);
-            session.getTransaction().commit();
+//            session.beginTransaction();
+//            MyCarEngine car = new MyCarEngine("engine");
+//            session.save(car);
+//            session.getTransaction().commit();
 
             /**
              * GET
@@ -60,7 +60,7 @@ public class CarShop {
              * DELETE
              */
 //            session.beginTransaction();
-//            Car entity = session.get(Car.class, 1);
+//            CarBrand entity = session.get(CarBrand.class, 1);
 //           if (entity != null ){
 //                session.delete(entity);
 //            }
@@ -73,6 +73,15 @@ public class CarShop {
 //            CarBrand entity = session.get(CarBrand.class, 6);
 //            session.createQuery("delete CarBrand where name LIKE 'BMW'").executeUpdate();
 //            session.getTransaction().commit();
+
+            session.beginTransaction();
+            CarBodyType carBodyType = new CarBodyType("Hatchback");
+            session.save(carBodyType);
+
+            CarBodyType entity = session.get(CarBodyType.class, carBodyType.getId());
+//        Assert.assertEquals(entity.getName(), "Hatchback");
+//        session.delete(entity);
+            session.getTransaction().commit();
 
 
 
