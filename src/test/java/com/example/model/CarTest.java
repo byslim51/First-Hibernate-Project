@@ -37,18 +37,18 @@ public class CarTest {
     }
 
     @Test
-    public void createCarModelAndColor() {
+    public void whenCRUDCarThenNotException() {
         session.beginTransaction();
         Car car = new Car();
-        CarColor carColor = session.get(CarColor.class, 3);
+        CarColor carColor = session.get(CarColor.class, 1);
         CarModel carModel = session.get(CarModel.class, 1);
         car.setColor(carColor);
         car.setModel(carModel);
         session.save(car);
 
         Car entity1 = session.get(Car.class, car.getId());
-        Assert.assertEquals(entity1.getColor().getName(), "Red");
-        Assert.assertEquals(entity1.getModel().getName(), "Corolla 2");
+        Assert.assertEquals(entity1.getColor().getName(), "Purple");
+        Assert.assertEquals(entity1.getModel().getName(), "Focus");
 
         session.delete(car);
         Car deleteCar = session.get(Car.class, car.getId());

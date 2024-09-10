@@ -30,13 +30,13 @@ public class CarColorTest {
     }
 
     @Test
-    public void createAndGetAndDeleteNewCarColor() {
+    public void whenCRUDCarColorThenNotException() {
         session.beginTransaction();
-        CarColor carColor = new CarColor("Purple");
+        CarColor carColor = new CarColor("Orange");
         session.save(carColor);
 
         CarColor entity = session.get(CarColor.class, carColor.getId());
-        Assert.assertEquals(entity.getName(), "Purple");
+        Assert.assertEquals(entity.getName(), "Orange");
 
         session.delete(carColor);
         CarColor entityDelete = session.get(CarColor.class, carColor.getId());

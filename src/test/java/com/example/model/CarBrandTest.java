@@ -5,11 +5,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.example.myFirstHibernateProject.model.CarBrand;
 
-public class CarBodyTypeTest {
+public class CarBrandTest {
     SessionFactory sessionFactory;
     Session session;
 
@@ -28,18 +28,17 @@ public class CarBodyTypeTest {
     }
 
     @Test
-    public void whenCRUDCarBodyTypeThenNotException() {
+    public void whenCRUDCarBrandThenNotException() {
         session.beginTransaction();
-        CarBodyType carBodyType = new CarBodyType("Cruiser");
-        session.save(carBodyType);
+        CarBrand carBrand = new CarBrand("Porsche");
+        session.save(carBrand);
 
-        CarBodyType entity = session.get(CarBodyType.class, carBodyType.getId());
-        Assert.assertEquals(entity.getName(), "Cruiser");
+        CarBrand entity = session.get(CarBrand.class, carBrand.getId());
+        Assert.assertEquals(entity.getName(), "Porsche");
 
-        session.delete(carBodyType);
-        CarBodyType entityDelete = session.get(CarBodyType.class, carBodyType.getId());
+        session.delete(carBrand);
+        CarBrand entityDelete = session.get(CarBrand.class, carBrand.getId());
         Assert.assertNull(entityDelete);
         session.getTransaction().commit();
     }
-
 }

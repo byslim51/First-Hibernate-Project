@@ -27,13 +27,13 @@ public class CarEngineTest {
     }
 
     @Test
-    public void createAndGetAndDeleteNewCarEngine() {
+    public void whenCRUDCarEngineThenNotException() {
         session.beginTransaction();
-        MyCarEngine carEngine = new MyCarEngine("engine_v15");
+        MyCarEngine carEngine = new MyCarEngine("engine_v16");
         session.save(carEngine);
 
         MyCarEngine entity = session.get(MyCarEngine.class, carEngine.getId());
-        Assert.assertEquals(entity.getName(), "engine_v15");
+        Assert.assertEquals(entity.getName(), "engine_v16");
 
         session.delete(carEngine);
         MyCarEngine entityDelete = session.get(MyCarEngine.class, carEngine.getId());
