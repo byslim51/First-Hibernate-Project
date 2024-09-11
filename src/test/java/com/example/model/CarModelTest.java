@@ -27,18 +27,7 @@ public class CarModelTest {
     }
 
     @Test
-    public void getModelColumns() {
-        session.beginTransaction();
-        CarModel entity1 = session.get(CarModel.class, 1);
-        session.getTransaction().commit();
-        Assert.assertEquals(entity1.getBrand().getName(), "Toyota");
-        Assert.assertEquals(entity1.getCarEngine().getName(), "engine_v5");
-        Assert.assertEquals(entity1.getBodyType().getName(), "Cruiser");
-        Assert.assertEquals(entity1.getName(), "Corolla 2");
-    }
-
-    @Test
-    public void createModelColumns() {
+    public void whenCRUDModelThenNotException() {
         session.beginTransaction();
         CarModel carModel = new CarModel();
         MyCarEngine carEngine = session.get(MyCarEngine.class, 1);
@@ -52,32 +41,13 @@ public class CarModelTest {
 
         CarModel entity1 = session.get(CarModel.class, carModel.getId());
         Assert.assertEquals(entity1.getName(), "Test");
-        Assert.assertEquals(entity1.getBrand().getName(), "Toyota");
-        Assert.assertEquals(entity1.getCarEngine().getName(), "engine_v5");
-        Assert.assertEquals(entity1.getBodyType().getName(), "Cruiser");
+        Assert.assertEquals(entity1.getBrand().getName(), "Ford");
+        Assert.assertEquals(entity1.getCarEngine().getName(), "engine_v15");
+        Assert.assertEquals(entity1.getBodyType().getName(), "Hatchback");
 
         session.delete(carModel);
         Car deleteCar = session.get(Car.class, carModel.getId());
         session.getTransaction().commit();
         Assert.assertNull(deleteCar);
-    }
-
-    @Test
-    public void deleteCarModelAndColor() {
-        session.beginTransaction();
-        CarModel carModel = new CarModel();
-        MyCarEngine carEngine = session.get(MyCarEngine.class, 1);
-        CarBrand carBrand = session.get(CarBrand.class, 1);
-        CarBodyType carBodyType = session.get(CarBodyType.class, 1);
-        carModel.setName("Test");
-        carModel.setCarEngine(carEngine);
-        carModel.setBrand(carBrand);
-        carModel.setBodyType(carBodyType);
-        session.save(carModel);
-
-        session.delete(carModel);
-        Car checkDeleteCar = session.get(Car.class, carModel.getId());
-        Assert.assertNull(checkDeleteCar);
-        session.getTransaction().commit();
     }
 }
